@@ -2,9 +2,9 @@
   "name": "rick_morty_characters",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "connect_create.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "connect_create.js"
   },
   "keywords": [],
   "author": "",

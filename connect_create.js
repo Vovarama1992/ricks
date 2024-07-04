@@ -23,13 +23,13 @@ async function setupAndInsertData() {
         console.log('Connected successfully');
 
         
-        const checkTableExistsQuery = `
+        const checkTableExistsQuery = 
             SELECT EXISTS (
                 SELECT FROM pg_tables
                 WHERE schemaname = 'public'
                 AND tablename  = 'Vovarama1992_table'
             );
-        `;
+        ;
 
         const res = await client.query(checkTableExistsQuery);
         const tableExists = res.rows[0].exists;
@@ -37,13 +37,13 @@ async function setupAndInsertData() {
         if (tableExists) {
             console.log('Table "Vovarama1992_table" already exists.');
         } else {
-            const createTableQuery = `
+            const createTableQuery = 
                 CREATE TABLE Vovarama1992_table (
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(255),
                     data JSONB
                 );
-            `;
+            ;
             await client.query(createTableQuery);
             console.log('Table "Vovarama1992_table" created successfully.');
         }
@@ -53,7 +53,7 @@ async function setupAndInsertData() {
         const characters_list = [];
 
         while (continueFetching) {
-            const res = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+            const res = await fetch(https://rickandmortyapi.com/api/character?page=${page});
             const json = await res.json();
             const characters = json.results;
             const prepared_to_db = characters.map((char) => ({
@@ -66,10 +66,10 @@ async function setupAndInsertData() {
             page++;
         }
 
-        const insertQuery = `
+        const insertQuery = 
             INSERT INTO Vovarama1992_table (name, data)
             VALUES ($1, $2)
-        `;
+        ;
 
         for (const char of characters_list) {
             await client.query(insertQuery, [char.name, char.data]);
